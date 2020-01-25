@@ -1,0 +1,31 @@
+{
+	"name": "node-graph-engine",
+	"version": "0.0.1",
+	"description": "Isomorphic JavaScript engine for visual programming node graph editor node-graph-editor",
+	"main": "app.js",
+	"private": true,
+	"scripts": {
+		"start": "npm run build && npm run serve",
+		"clean": "rimraf dist/",
+		"build": "npm run clean && tsc",
+		"serve": "node test/index.js",
+		"dev": "nodemon test/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/codynova/node-graph-engine.git"
+	},
+	"keywords": [
+		"node graph engine",
+		"visual programming"
+	],
+	"author": "Cody Nova",
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"@types/node": "13.1.8",
+		"nodemon": "2.0.2",
+		"rimraf": "3.0.0",
+		"ts-node": "8.6.2",
+		"typescript": "^3.7.4"
+	}
+}
