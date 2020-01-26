@@ -1,6 +1,5 @@
 export * from './core';
 export * from './engine';
-export * from './component';
 export * from './connection';
 export * from './control';
 export * from './errors';
