@@ -3,7 +3,6 @@
 	"version": "0.0.1",
 	"description": "Isomorphic JavaScript engine for visual programming node graph editor node-graph-editor",
 	"main": "app.js",
-	"private": true,
 	"scripts": {
 		"start": "npm run build && npm run serve",
 		"clean": "rimraf dist/",
