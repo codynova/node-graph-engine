@@ -7,3 +7,4 @@ export * from './input';
 export * from './io';
 export * from './node';
 export * from './output';
+export * from './socket';
