@@ -13,12 +13,12 @@ export type InputsData = Map<string, InputData>
 export type OutputsData = Map<string, OutputData>
 
 export type NodeData = {
-    id: number;
-    name: string;
-    data: Map<string, any>;
-    inputs: InputsData;
-    outputs: OutputsData;
-    position: [number, number];
+	id: number;
+	name: string;
+	data: Map<string, any>;
+	inputs: InputsData;
+	outputs: OutputsData;
+	position: [number, number];
 }
 
 export type NodesData = Map<string, NodeData>
