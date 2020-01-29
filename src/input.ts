@@ -2,7 +2,7 @@ import { IO } from './io';
 import { Control } from './control';
 import { Socket } from './socket';
 import { Connection } from './connection';
-import { ErrorTypes } from './errors';
+import { EngineError } from './errors';
 
 export class Input extends IO {
 	control: Control | null = null;
@@ -13,7 +13,7 @@ export class Input extends IO {
 
 	addConnection (connection: Connection) {
 		if (!this.allowMultipleConnections && this.hasConnection()) {
-			throw new Error(ErrorTypes.MultipleConnectionsDisallowed);
+			throw new Error(EngineError.MultipleConnectionsDisallowed);
 		}
 	}
 

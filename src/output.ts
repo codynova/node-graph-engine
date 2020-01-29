@@ -3,7 +3,7 @@ import { Control } from './control';
 import { Socket } from './socket';
 import { Input } from './input';
 import { Connection } from './connection';
-import { ErrorTypes } from './errors';
+import { EngineError } from './errors';
 
 export class Output extends IO {
 	constructor (key: string, name: string, socket: Socket, allowMultipleConnections: boolean = true) {
@@ -12,15 +12,15 @@ export class Output extends IO {
 
 	connectTo (input: Input) {
 		if (!this.socket.compatibleWith(input.socket)) {
-			throw new Error(ErrorTypes.SocketsNotCompatible)
+			throw new Error(EngineError.SocketsNotCompatible)
 		}
 
 		if (!input.allowMultipleConnections && input.hasConnection()) {
-			throw new Error(ErrorTypes.InputHasConnection);
+			throw new Error(EngineError.InputHasConnection);
 		}
 
 		if (!this.allowMultipleConnections && this.hasConnection()) {
-			throw new Error(ErrorTypes.OutputHasConnection);
+			throw new Error(EngineError.OutputHasConnection);
 		}
 
 		const connection = new Connection(input, this);

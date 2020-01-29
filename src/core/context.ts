@@ -2,7 +2,7 @@ import { Emitter } from './emitter';
 import { DefaultEvents, Events } from './events';
 import { Component } from '../engine/component';
 import { Plugin, PluginParams } from './plugin';
-import { ErrorTypes } from '../errors';
+import { EngineError } from '../errors';
 
 export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
 	id: string;
@@ -19,7 +19,7 @@ export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
 
 	use <T extends Plugin, O extends PluginParams<T>>(plugin: T, options: O) {
 		if (this.plugins.has(plugin.name)) {
-			throw new Error(ErrorTypes.PluginAlreadyExists);
+			throw new Error(EngineError.PluginAlreadyExists);
 		}
 
 		plugin.install(this, options || {});
@@ -28,7 +28,7 @@ export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
 
 	register (component: Component) {
 		if (this.components.has(component.name)) {
-			throw new Error(ErrorTypes.ComponentAlreadyExists);
+			throw new Error(EngineError.ComponentAlreadyExists);
 		}
 
 		this.components.set(component.name, component);

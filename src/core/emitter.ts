@@ -1,5 +1,5 @@
 import { Events } from './events';
-import { ErrorTypes } from '../errors';
+import { EngineError } from '../errors';
 
 export class Emitter<EventTypes> {
 	events = new Map<string, Function[]>();
@@ -16,7 +16,7 @@ export class Emitter<EventTypes> {
 			const event = this.events.get(eventName);
 
 			if (!event) {
-				throw new Error(ErrorTypes.EventNameUndefined + eventName);
+				throw new Error(EngineError.EventNameUndefined + eventName);
 			}
 
 			event.push(handler);
@@ -29,7 +29,7 @@ export class Emitter<EventTypes> {
 		const event = this.events.get(eventName);
 		
 		if (!event) {
-			throw new Error(ErrorTypes.EventTriggerFailed + eventName);
+			throw new Error(EngineError.EventTriggerFailed + eventName);
 		}
 
 		return event.reduce((accumulator: boolean, handler: Function) => handler(params) !== false && accumulator, true);
@@ -37,7 +37,7 @@ export class Emitter<EventTypes> {
 
 	bind (eventName: string) {
 		if (this.events.get(eventName)) {
-			throw new Error(ErrorTypes.EventAlreadyBound + eventName);
+			throw new Error(EngineError.EventAlreadyBound + eventName);
 		}
 
 		this.events.set(eventName, []);

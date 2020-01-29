@@ -1,7 +1,7 @@
 import { Context } from '../core/context';
 import { DefaultEngineEvents, EngineEvents } from './events';
 import { EngineData, NodeData, WorkerOutputs, NodesData } from '../core/types';
-import { ErrorTypes } from '../errors';
+import { EngineError } from '../errors';
 
 enum EngineState {
 	AVAILABLE = 0,
@@ -216,7 +216,7 @@ export class Engine extends Context<DefaultEngineEvents> {
 		const startNode = this.data!.nodes.get(id);
 
 		if (!startNode) {
-			return await this.throwError(ErrorTypes.StartNodeNotFound + id);
+			return await this.throwError(EngineError.StartNodeNotFound + id);
 		}
 
 		await this.processNode(startNode as EngineNode);

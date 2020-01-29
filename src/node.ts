@@ -2,7 +2,7 @@ import { Input } from './input';
 import { Output } from './output';
 import { Connection } from './connection';
 import { Control } from './control';
-import { ErrorTypes } from './errors';
+import { EngineError } from './errors';
 
 export class Node {
 	static latestId = 0;
@@ -37,11 +37,11 @@ export class Node {
 
 	private add <T extends any>(map: Map<string, T>, item: T, key: string) {
 		if (map.has(item.key)) {
-			throw new Error(ErrorTypes.ItemExistsOnThisNode);
+			throw new Error(EngineError.ItemExistsOnThisNode);
 		}
 
 		if (item[key] !== null) {
-			throw new Error(ErrorTypes.ItemExistsOnSomeNode);
+			throw new Error(EngineError.ItemExistsOnSomeNode);
 		}
 
 		item[key] = this;

@@ -1,4 +1,4 @@
-export enum ErrorTypes {
+export enum EngineError {
 	ControlNotParented = 'Control has no parent node or input',
 	InputHasConnection = 'Input already has a connection, and multiple connections are not allowed',
 	OutputHasConnection = 'Output already has a connection, and multiple connections are not allowed',

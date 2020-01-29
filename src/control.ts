@@ -1,6 +1,6 @@
 import { Node } from './node';
 import { Input } from './input';
-import { ErrorTypes } from './errors';
+import { EngineError } from './errors';
 
 export abstract class Control {
 	key: string;
@@ -18,7 +18,7 @@ export abstract class Control {
 		}
 
 		if (!this.parent || !this.parent.node) {
-			throw new Error(ErrorTypes.ControlNotParented);
+			throw new Error(EngineError.ControlNotParented);
 		}
 
 		return this.parent.node;
