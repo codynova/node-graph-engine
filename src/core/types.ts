@@ -40,7 +40,7 @@ export type NodeDataJSON = {
 
 export type NodesData = Map<NodeData['id'], NodeData>
 
-export type NodesDataJSON = { [key in NodeData['id']]: NodeDataJSON }
+export type NodesDataJSON = { [key in NodeDataJSON['id']]: NodeDataJSON }
 
 export type EngineData = { id: string, nodes: NodesData }
 
