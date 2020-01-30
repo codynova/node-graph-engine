@@ -2,6 +2,7 @@ import { IO } from './io';
 import { Control } from './control';
 import { Socket } from './socket';
 import { Connection } from './connection';
+import { InputDataJSON } from './core';
 import { EngineError } from './errors';
 
 export class Input extends IO {
@@ -24,5 +25,21 @@ export class Input extends IO {
 
 	showControl () {
 		return !this.hasConnection() && this.control !== null;
+	}
+
+	toJSON (): InputDataJSON {
+		return {
+			'connections': this.connections.map(({ data, output }) => {
+				if (!output.node) {
+					throw new Error(EngineError.NodeNotFoundForOutput + output.key);
+				}
+
+				return {
+					nodeId: output.node.id,
+					outputKey: output.key,
+					data,
+				};
+			}),
+		};
 	}
 }

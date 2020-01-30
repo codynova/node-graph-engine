@@ -2,22 +2,21 @@ import { Input } from './input';
 import { Output } from './output';
 import { Connection } from './connection';
 import { Control } from './control';
+import { NodeDataJSON, InputsDataJSON, OutputsDataJSON, NodeData, InputsData, OutputsData } from './core';
 import { EngineError } from './errors';
 
 export class Node {
-	static latestId = 0;
-
-	guid: string;
 	id: number;
+	name: string;
 	data = new Map<string, unknown>();
 	inputs = new Map<string, Input>();
 	outputs = new Map<string, Output>();
 	controls = new Map<string, Control>();
 	position: [number, number] = [0.0, 0.0];
+	static latestId = 0;
 
-	constructor (
-		public name: string,
-	) {
+	constructor (name: string) {
+		this.name = name;
 		this.id = Node.nextId();
 	}
 
@@ -96,5 +95,46 @@ export class Node {
 		}
 
 		return connections;
+	}
+
+	toJSON (): NodeDataJSON {
+		const data: { [key: string]: any } = {};
+
+		for (const entry of this.data) {
+			data[entry[0]] = entry[1];
+		}
+
+		const inputs: InputsDataJSON = {};
+
+		for (const entry of this.inputs) {
+			inputs[entry[0]] = entry[1].toJSON();
+		}
+
+		const outputs: OutputsDataJSON = {};
+
+		for (const entry of this.outputs) {
+			outputs[entry[0]] = entry[1].toJSON();
+		}
+
+		// TO DO: do these properties need to be quoted?
+		return {
+			'id': this.id,
+			'name': this.name,
+			'data': data,
+			'inputs': inputs,
+			'outputs': outputs,
+			'position': this.position,
+		}
+	}
+
+	static fromJSON (json: NodeDataJSON): Node {
+		const node = new Node(json.name);
+		node.id = json.id;
+		node.data = new Map<string, unknown>();
+		Object.entries(json.data).forEach(([ key, value ]) => node.data.set(key, value));
+		const [ x, y ] = json.position;
+		node.position = [ x, y ];
+		Node.latestId = Math.max(node.id, Node.latestId);
+		return node;
 	}
 }

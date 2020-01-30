@@ -21,6 +21,6 @@ export class Validator {
             return { success: false, error: EngineError.EngineDataIDsUnequal };
         }
 
-        return { success: true, error: null };
+        return { success: true, error: undefined };
     }
 }

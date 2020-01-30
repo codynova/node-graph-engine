@@ -1,9 +1,9 @@
 export enum EngineError {
 	InvalidEngineData = 'Data is not of type EngineData',
 	EngineDataIDsUnequal = 'EngineData IDs not equal: ',
-	ControlNotParented = 'Control has no parent node or input',
-	InputHasConnection = 'Input already has a connection, and multiple connections are not allowed',
-	OutputHasConnection = 'Output already has a connection, and multiple connections are not allowed',
+	ControlNotParented = 'Control has no parent Node or Input',
+	InputHasConnection = 'Input already has a connection, and multiple Connections are not allowed',
+	OutputHasConnection = 'Output already has a connection, and multiple Connections are not allowed',
 	MultipleConnectionsDisallowed = 'Multiple connections are not allowed',
 	SocketsNotCompatible = 'Sockets are not compatible to be connected',
 	ItemExistsOnThisNode = 'Item already exists on this node',
@@ -13,5 +13,7 @@ export enum EngineError {
 	EventAlreadyBound = 'Event already bound with name: ',
 	ComponentAlreadyExists = 'Component already exists with name: ',
 	PluginAlreadyExists = 'Plugin already exists with name: ',
-	StartNodeNotFound = 'Failed to find start node with id: ',
+	StartNodeNotFound = 'Failed to find start Node with id: ',
+	NodeNotFoundForOutput = 'Node not added to Output. Output key: ',
+	NodeNotFoundForInput = 'Node not added to Input. Input key: ',
 }
