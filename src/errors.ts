@@ -1,4 +1,5 @@
 export enum EngineError {
+	InvalidEngineIDFormat = 'Engine ID is not in a valid format: ',
 	InvalidEngineData = 'Data is not of type EngineData',
 	EngineDataIDsUnequal = 'EngineData IDs not equal: ',
 	ControlNotParented = 'Control has no parent Node or Input',

@@ -2,6 +2,7 @@ import { Emitter } from './emitter';
 import { DefaultEvents, Events } from './events';
 import { Component } from '../engine/component';
 import { Plugin, PluginParams } from './plugin';
+import { Validator } from './validator';
 import { EngineError } from '../errors';
 
 export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
@@ -12,9 +13,17 @@ export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
 	constructor (id: string, events: Events) {
 		super(events);
 
-		// TO DO: validate id?
+		if (!Validator.isValidId(id)) {
+			throw new Error(EngineError.InvalidEngineIDFormat);
+		}
 
 		this.id = id;
+
+		// TO DO: delete this if it's not needed...
+		// is there any difference in initializing here?
+		
+		// this.plugins = new Map();
+        // this.components = new Map();
 	}
 
 	use <T extends Plugin, O extends PluginParams<T>>(plugin: T, options: O) {
