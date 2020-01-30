@@ -1,4 +1,6 @@
 export enum EngineError {
+	InvalidEngineData = 'Data is not of type EngineData',
+	EngineDataIDsUnequal = 'EngineData IDs not equal: ',
 	ControlNotParented = 'Control has no parent node or input',
 	InputHasConnection = 'Input already has a connection, and multiple connections are not allowed',
 	OutputHasConnection = 'Output already has a connection, and multiple connections are not allowed',
