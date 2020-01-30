@@ -21,13 +21,9 @@ export type NodeData = {
 	position: [number, number];
 }
 
-export type NodesData = Map<string, NodeData>
+export type NodesData = Map<NodeData['id'], NodeData>
 
 export type EngineData = { id: string, nodes: NodesData }
-
-// export interface WorkerInputs extends Map<string, any[]> {}
-
-// export interface WorkerOutputs extends Map<string, any> {}
 
 export type WorkerInputs = Map<string, any[]>
 

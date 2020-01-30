@@ -10,11 +10,11 @@ const init = async () => {
     engine.events.set('error', []);
     engine.register(new NumberComponent());
     engine.register(new AddComponent());
-    const result = await engine.process(engineData, '1');
+    const result = await engine.process(engineData, 1);
     console.log('Process = ', result);
-    console.log(engineData.nodes.get('1')!.data);
-    console.log(engineData.nodes.get('2')!.data);
-    console.log(engineData.nodes.get('3')!.data);
+    console.log(engineData.nodes.get(1)!.data);
+    console.log(engineData.nodes.get(2)!.data);
+    console.log(engineData.nodes.get(3)!.data);
 };
 
 init();

@@ -1,8 +1,8 @@
-import { NodeData } from '../src/core/types';
+import { NodesData } from '../src/core/types';
 
-const nodeData = new Map<string, NodeData>();
+const nodeData: NodesData = new Map();
 
-nodeData.set('1', {
+nodeData.set(1, {
     id: 1,
     data: new Map().set('num', 1),
     inputs: new Map(),
@@ -19,7 +19,7 @@ nodeData.set('1', {
     name: 'NumberComponent',
 });
 
-nodeData.set('2', {
+nodeData.set(2, {
     id: 2,
     data: new Map().set('num', 2),
     inputs: new Map(),
@@ -36,7 +36,7 @@ nodeData.set('2', {
     name: 'NumberComponent',
 });
 
-nodeData.set('3', {
+nodeData.set(3, {
     id: 3,
     data: new Map(),
     inputs: new Map().set('num1', {

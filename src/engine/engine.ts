@@ -129,12 +129,12 @@ export class Engine extends Context<DefaultEngineEvents> {
 	}
 
 	private async extractInputData (node: NodeData) {
-		const map = new Map<string, any>();
+		const data = new Map<string, any>();
 
 		for (const key of node.inputs.keys()) {
 			const input = node.inputs.get(key)!;
 			const connectionData = await Promise.all(input.connections.map(async connection => {
-				const previousNode = this.data!.nodes.get(`${connection.nodeId}`)!;
+				const previousNode = this.data!.nodes.get(connection.nodeId)!;
 				const outputs = await this.processNode(previousNode as EngineNode);
 
 				if (!outputs) {
@@ -145,10 +145,10 @@ export class Engine extends Context<DefaultEngineEvents> {
 				}
 			}));
 
-			map.set(key, connectionData);
+			data.set(key, connectionData);
 		}
 
-		return map;
+		return data;
 	}
 
 	private async forwardProcess (node: NodeData) {
@@ -165,7 +165,7 @@ export class Engine extends Context<DefaultEngineEvents> {
 				const output = node.outputs.get(key)!;
 
 				return resolve(await Promise.all(output.connections.map(async connection => {
-					const nextNode = this.data!.nodes.get(`${connection.nodeId}`)!;
+					const nextNode = this.data!.nodes.get(connection.nodeId)!;
 					await this.processNode(nextNode as EngineNode);
 					await this.forwardProcess(nextNode);
 				})));
@@ -208,7 +208,7 @@ export class Engine extends Context<DefaultEngineEvents> {
 		return true;
 	}
 
-	private async processStartNode (id: string | null) {
+	private async processStartNode (id: number | null) {
 		if (!id) {
 			return;
 		}
@@ -232,7 +232,7 @@ export class Engine extends Context<DefaultEngineEvents> {
 		}
 	}
 
-	async process <T extends unknown[]>(data: EngineData, startId: string | null = null, ...args: T) {
+	async process <T extends unknown[]>(data: EngineData, startId: number | null = null, ...args: T) {
 		if (!this.processStart()) {
 			return;
 		}

@@ -1,6 +1,6 @@
 {
 	"name": "node-graph-engine",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Isomorphic JavaScript engine for visual programming node graph editor node-graph-editor",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
