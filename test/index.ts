@@ -1,5 +1,4 @@
-import { Engine } from '../src/engine';
-import { EngineData } from '../src/core/types';
+import { Engine, EngineData } from '../src';
 import { NumberComponent, AddComponent } from './components';
 import { nodeData } from './data';
 
