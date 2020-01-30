@@ -44,6 +44,8 @@ export type NodesDataJSON = { [key in NodeData['id']]: NodeDataJSON }
 
 export type EngineData = { id: string, nodes: NodesData }
 
+export type EngineDataJSON = { id: string, nodes: NodesDataJSON }
+
 export type WorkerInputs = Map<string, any[]>
 
 export type WorkerOutputs = Map<string, any>
