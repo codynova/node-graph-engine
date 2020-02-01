@@ -137,4 +137,6 @@ export class Node {
 		Node.latestId = Math.max(node.id, Node.latestId);
 		return node;
 	}
+
+	update () {}
 }

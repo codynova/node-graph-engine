@@ -31,4 +31,6 @@ export abstract class Control {
 	putData (key: string, data: unknown) {
 		this.getNode().data.set(key, data);
 	}
+
+	update () {}
 }
