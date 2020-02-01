@@ -26,7 +26,7 @@ export class Context<EventTypes> extends Emitter<EventTypes & DefaultEvents> {
         // this.components = new Map();
 	}
 
-	use <T extends Plugin, O extends PluginParams<T>>(plugin: T, options: O) {
+	use <T extends Plugin, O extends PluginParams<T>>(plugin: T, options?: O) {
 		if (this.plugins.has(plugin.name)) {
 			throw new Error(EngineError.PluginAlreadyExists);
 		}
